@@ -1,0 +1,34 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+int generateRandomNumber() {
+    return std::rand() % 100 + 1;
+}
+void guessNumber(int randomNumber) {
+    int userGuess;
+    int attempts = 0; 
+    std::cout << "I have selected a random number between 1 and 100." << std::endl;
+    while (true) {
+        std::cout << "Enter your guess: ";
+        std::cin >> userGuess;
+        attempts++; 
+        if (userGuess > randomNumber) {
+            std::cout << "Too high! Try again." << std::endl;
+        } else if (userGuess < randomNumber) {
+            std::cout << "Too low! Try again." << std::endl;
+        } else {
+            std::cout << "Congratulations! You guessed the correct number " 
+                      << randomNumber << " in " << attempts << " attempts." << std::endl;
+            break;  
+        }
+    }
+}
+
+int main() {
+    std::srand(static_cast<unsigned int>(std::time(0)));
+    int randomNumber = generateRandomNumber(); 
+    std::cout << "Welcome to the Guess the Number game!" << std::endl;
+    guessNumber(randomNumber);
+    return 0;
+}
